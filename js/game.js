@@ -14,6 +14,9 @@ Game.prototype.init = function () {
         if (this.framesCounter % 100 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
             this.generateObstacles();
         }
+        if (this.collision()) {
+            this.gameOver();
+        }
     }.bind(this), 1000 / this.fps);
 };
 
@@ -40,6 +43,18 @@ Game.prototype.generateObstacles = function () {
         arrayObstacles[Math.floor(Math.random() * (arrayObstacles.length))]));
 };
 
+Game.prototype.gameOver = function () {
+    this.stop();
+    if (confirm("GAME OVER. Why u were programming and no seeing HACKSHOW!?")) {
+        this.reset();
+        this.init();
+    }
+};
+
+Game.prototype.stop = function () {
+ clearInterval(this.intervalId);
+}
+
 Game.prototype.draw = function () {
     this.background.draw();
     this.player.draw();
@@ -57,6 +72,17 @@ Game.prototype.move = function () {
         obstacle.move();
     });
 };
+
+Game.prototype.collision = function () {
+    return this.obstacles.some(function (obstacle) {
+        return (
+            ((this.player.x + this.player.w) >= obstacle.x &&
+                (obstacle.x + obstacle.w) >= this.player.x &&
+                (this.player.y + this.player.h) > obstacle.y &&
+                (obstacle.y + obstacle.h) > this.player.y)
+        );
+    }.bind(this));
+}
 
 Game.prototype.deleteObstacles = function () {
     this.obstacles = this.obstacles.filter(function (obstacle) {
