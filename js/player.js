@@ -47,7 +47,7 @@ Player.prototype.move = function () {
     document.onkeydown = function (event) {
         event.preventDefault();
         if (event.keyCode === SPACE && this.y == this.y0) {
-            this.y -= 100;
+            this.y -= 125;
         };
     }.bind(this);
 
