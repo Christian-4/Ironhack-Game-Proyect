@@ -7,8 +7,8 @@ function Game(canvas) {
 
 Game.prototype.init = function () {
     this.intervalId = setInterval(function () {
+        this.winOrLose();
         this.deleteObstacles();
-        this.nextPhase();
         this.framesCounter++;
         this.draw();
         this.move();
@@ -46,14 +46,14 @@ Game.prototype.generateObstacles = function () {
 
 Game.prototype.gameOver = function () {
     this.stop();
-    if (confirm("GAME OVER. Why u were programming and no seeing HACKSHOW!?. Play again?")) {
+    if (confirm("GAME OVER. Play again?")) {
         this.reset();
         this.init();
     }
 };
 
 Game.prototype.stop = function () {
- clearInterval(this.intervalId);
+    clearInterval(this.intervalId);
 }
 
 Game.prototype.draw = function () {
@@ -74,11 +74,18 @@ Game.prototype.move = function () {
     });
 };
 
-// Game.prototype.nextPhase = function(){
-//     if (this.player.x >= this.canvas.width){
-        
-//     };
-// };
+Game.prototype.winOrLose = function () {
+    if (this.player.x >= this.canvas.width){
+        // this.nextPhase();
+    };
+    if (this.npc.x >= this.canvas.width){
+        this.gameOver();
+    };
+};
+
+Game.prototype.nextPhase = function (){
+
+}
 
 Game.prototype.collision = function () {
     return this.obstacles.some(function (obstacle) {
