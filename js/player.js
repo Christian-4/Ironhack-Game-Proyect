@@ -1,6 +1,7 @@
-function Player(game, x, y, img) {
+function Player(game, x, y, img, vx) {
     this.game = game;
     this.x = x;
+    this.vx = vx;
     this.y = y;
     this.y0 = y;
     this.vy = 2;
@@ -59,5 +60,5 @@ Player.prototype.move = function () {
 };
 
 Player.prototype.movenpc = function () {
-    this.x += 0.5;
+    this.x += this.vx;
 };

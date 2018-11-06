@@ -1,7 +1,8 @@
-function Game(canvas) {
+function Game(canvas, level) {
     this.canvas = document.getElementById(canvas);
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
+    this.level = level;
     this.reset();
 };
 
@@ -12,7 +13,7 @@ Game.prototype.init = function () {
         this.framesCounter++;
         this.draw();
         this.move();
-        if (this.framesCounter % 100 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
+        if (this.framesCounter % 1000 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
             this.generateObstacles();
         }
         if (this.collision()) {
@@ -22,8 +23,7 @@ Game.prototype.init = function () {
 };
 
 Game.prototype.reset = function () {
-    this.background = new Background(this);
-    this.npc = new Player(this, 100, 150, "images/sprite.png");
+    this.levels();
     this.player = new Player(this, 100, 500, "images/sprite.png");
     this.obstacles = [];
     this.framesCounter = 0;
@@ -75,17 +75,52 @@ Game.prototype.move = function () {
 };
 
 Game.prototype.winOrLose = function () {
-    if (this.player.x >= this.canvas.width){
-        // this.nextPhase();
+    if (this.player.x >= this.canvas.width) {
+        if (this.level == 1) {
+            this.player.x = 100;
+            this.levelUp();
+        };
+        if (this.level == 2) {
+            this.player.x = 100;
+            this.levelUp();
+        };
+        if (this.level == 3) {
+            this.stop();
+            alert("U won the HACKSHOW! ⛏⛏⛏⛏");
+        };
     };
-    if (this.npc.x >= this.canvas.width){
+    if (this.npc.x >= this.canvas.width) {
         this.gameOver();
     };
 };
 
-Game.prototype.nextPhase = function (){
+Game.prototype.levels = function () {
+    switch (this.level) {
+        case 1:
+        this.npc = new Player(this, 100, 150, "images/sprite.png", 0.5);
+        this.background = new Background(this, "images/background.jpg");
+            break;
+        case 2:
+        this.npc = new Player(this, 100, 150, "images/sprite.png", 1);
+        this.background = new Background(this, "images/background.jpg");
+            break;
 
-}
+        case 3:
+        this.npc = new Player(this, 100, 150, "images/sprite.png", 1.5);
+        this.background = new Background(this, "images/backgroundfinal.jpg");
+            break;
+    };
+};
+
+Game.prototype.levelUp = function () {
+    setTimeout(
+        function () {
+            this.level++;
+            this.reset();
+        }.bind(this),
+        50
+    );
+};
 
 Game.prototype.collision = function () {
     return this.obstacles.some(function (obstacle) {

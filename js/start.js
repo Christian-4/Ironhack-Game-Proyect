@@ -3,7 +3,7 @@ window.onload = function() {
         startGame();
       };
 
-    var game = new Game("canvas");
+    var game = new Game("canvas", 1);
     function startGame(){
         game.init();
     };
