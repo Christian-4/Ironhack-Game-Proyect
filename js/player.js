@@ -48,15 +48,20 @@ Player.prototype.move = function () {
     document.onkeydown = function (event) {
         event.preventDefault();
         if (event.keyCode === SPACE && this.y == this.y0) {
-            this.y -= 125;
+            this.y -= 45;
+            this.vy -= 10;
         };
     }.bind(this);
 
-    if (this.y >= this.y0) {
-        this.y = this.y0;
-    } else {
-        this.y += this.vy;
-    };
+    var gravity = 0.4;
+
+  if (this.y >= this.y0) {
+    this.vy = 1;
+    this.y = this.y0;
+  } else {
+    this.vy += gravity;
+    this.y += this.vy;
+  };
 };
 
 Player.prototype.movenpc = function () {

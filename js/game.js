@@ -13,7 +13,7 @@ Game.prototype.init = function () {
         this.framesCounter++;
         this.draw();
         this.move();
-        if (this.framesCounter % 1000 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
+        if (this.framesCounter % 100 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
             this.generateObstacles();
         }
         if (this.collision()) {
