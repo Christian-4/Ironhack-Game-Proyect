@@ -164,15 +164,23 @@ Game.prototype.collision = function () {
 };
 
 Game.prototype.ia = function () {
-    this.obstacles.forEach(function (obstacle) {
-        if ((this.npc.x + this.npc.w) >= (obstacle.x - obstacle.w)) {
-            this.npc.y -= 2.25;
-            if ((this.npc.x + this.npc.w) > (obstacle.x + obstacle.w)) {
-                this.npc.y += 3;
-                if (this.npc.y > this.npc.y0) {
-                    this.npc.y = this.npc.y0;
-                }
+    var gravity = 0.4;
+
+    if (this.npc.y >= this.npc.y0) {
+        this.npc.vy = 1;
+        this.npc.y = this.npc.y0;
+    } else {
+        this.npc.vy += gravity;
+        this.npc.y += this.npc.vy;
+    };
+    this.obstacles.forEach(
+        function (obstacle) {
+            if (this.npc.x + this.npc.w >= obstacle.x - obstacle.w &&
+                this.npc.x + this.npc.w <= obstacle.x + obstacle.w*2) {
+                this.npc.y -= 5
             }
-        }
-    }.bind(this));
-}
+        }.bind(this)
+    );
+
+
+};
