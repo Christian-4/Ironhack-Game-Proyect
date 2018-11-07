@@ -116,19 +116,19 @@ Game.prototype.winOrLose = function () {
 Game.prototype.levels = function () {
     switch (this.level) {
         case 1:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.3);
-            this.background = new Background(this, "images/background.jpg");
-            break;
-        case 2:
             this.npc = new Player(this, 100, 150, "images/sprite.png", 0.5);
             this.background = new Background(this, "images/background.jpg");
             break;
-        case 3:
+        case 2:
             this.npc = new Player(this, 100, 150, "images/sprite.png", 0.6);
             this.background = new Background(this, "images/background.jpg");
             break;
+        case 3:
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.7);
+            this.background = new Background(this, "images/background.jpg");
+            break;
         case 4:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.75);
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.8);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 5:
@@ -136,7 +136,7 @@ Game.prototype.levels = function () {
             this.background = new Background(this, "images/background.jpg");
             break;
         case 6:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 1.2);
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 1.1);
             this.background = new Background(this, "images/backgroundfinal.jpg");
             break;
     };
@@ -166,10 +166,9 @@ Game.prototype.collision = function () {
 Game.prototype.ia = function () {
     this.obstacles.forEach(function (obstacle) {
         if ((this.npc.x + this.npc.w) >= (obstacle.x - obstacle.w)) {
-            this.npc.y -= 5;
-            console.log("salto");
+            this.npc.y -= 2.25;
             if ((this.npc.x + this.npc.w) > (obstacle.x + obstacle.w)) {
-                this.npc.y += 10;
+                this.npc.y += 3;
                 if (this.npc.y > this.npc.y0) {
                     this.npc.y = this.npc.y0;
                 }
