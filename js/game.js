@@ -18,7 +18,6 @@ Game.prototype.init = function () {
         }
         this.ia();
         if (this.collision()) {
-
             this.gameOver();
         }
     }.bind(this), 1000 / this.fps);
@@ -28,6 +27,7 @@ Game.prototype.reset = function () {
     this.levels();
     this.player = new Player(this, 100, 500, "images/sprite.png");
     this.obstacles = [];
+    this.obstaclesNpc = [];
     this.framesCounter = 0;
 };
 
@@ -46,6 +46,8 @@ Game.prototype.gameOver = function () {
 Game.prototype.generateObstacles = function () {
     var arrayObstacles = ["images/obstacle01.png", "images/obstacle02.png", "images/obstacle03.png", "images/obstacle04.png"];
     var randomNumber = Math.floor(Math.random() * (arrayObstacles.length))
+    var arrayObstaclesNpc = ["images/obstacle01.png", "images/obstacle02.png", "images/obstacle03.png", "images/obstacle04.png"];
+    var randomNumberNpc = Math.floor(Math.random() * (arrayObstaclesNpc.length))
 
     this.obstacles.push(new Obstacle(this,
         45,
@@ -53,15 +55,18 @@ Game.prototype.generateObstacles = function () {
         this.player.y0 + this.player.h - 45,
         arrayObstacles[randomNumber], randomNumber));
 
-    this.obstacles.push(new Obstacle(this,
+    this.obstaclesNpc.push(new Obstacle(this,
         45,
         45,
         this.npc.y0 + this.npc.h - 45,
-        arrayObstacles[randomNumber], randomNumber));
+        arrayObstaclesNpc[randomNumberNpc], randomNumberNpc));
 };
 
 Game.prototype.deleteObstacles = function () {
     this.obstacles = this.obstacles.filter(function (obstacle) {
+        return obstacle.x >= 100;
+    });
+    this.obstaclesNpc = this.obstaclesNpc.filter(function (obstacle) {
         return obstacle.x >= 100;
     });
 };
@@ -74,12 +79,18 @@ Game.prototype.draw = function () {
     this.obstacles.forEach(function (obstacle) {
         obstacle.draw();
     });
+    this.obstaclesNpc.forEach(function (obstacle) {
+        obstacle.draw();
+    });
 };
 
 Game.prototype.move = function () {
     this.player.move();
     this.npc.movenpc();
     this.obstacles.forEach(function (obstacle) {
+        obstacle.move();
+    });
+    this.obstaclesNpc.forEach(function (obstacle) {
         obstacle.move();
     });
 };
@@ -182,14 +193,14 @@ Game.prototype.ia = function () {
         this.npc.vy += gravity;
         this.npc.y += this.npc.vy;
     };
-    this.obstacles.forEach(
+    this.obstaclesNpc.forEach(
         function (obstacle) {
             if (this.npc.x + this.npc.w >= obstacle.x - obstacle.w &&
                 this.npc.x + this.npc.w <= obstacle.x + obstacle.w * 2) {
                 if (obstacle.type === 0) {
                     obstacle.x = 0;
                 } else {
-                    this.npc.y -= 5;
+                    this.npc.y -= 10;
                 }
             }
         }.bind(this)
