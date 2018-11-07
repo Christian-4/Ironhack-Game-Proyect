@@ -16,6 +16,7 @@ Game.prototype.init = function () {
         if (this.framesCounter % 100 === 0 && this.player.x <= (this.canvas.width / 1.5)) {
             this.generateObstacles();
         }
+        this.ia();
         if (this.collision()) {
             this.gameOver();
         }
@@ -27,6 +28,18 @@ Game.prototype.reset = function () {
     this.player = new Player(this, 100, 500, "images/sprite.png");
     this.obstacles = [];
     this.framesCounter = 0;
+};
+
+Game.prototype.stop = function () {
+    clearInterval(this.intervalId);
+}
+
+Game.prototype.gameOver = function () {
+    this.stop();
+    if (confirm("GAME OVER. Play again?")) {
+        this.reset();
+        this.init();
+    }
 };
 
 Game.prototype.generateObstacles = function () {
@@ -44,17 +57,11 @@ Game.prototype.generateObstacles = function () {
         arrayObstacles[Math.floor(Math.random() * (arrayObstacles.length))]));
 };
 
-Game.prototype.gameOver = function () {
-    this.stop();
-    if (confirm("GAME OVER. Play again?")) {
-        this.reset();
-        this.init();
-    }
+Game.prototype.deleteObstacles = function () {
+    this.obstacles = this.obstacles.filter(function (obstacle) {
+        return obstacle.x >= 100;
+    });
 };
-
-Game.prototype.stop = function () {
-    clearInterval(this.intervalId);
-}
 
 Game.prototype.draw = function () {
     this.background.draw();
@@ -85,6 +92,18 @@ Game.prototype.winOrLose = function () {
             this.levelUp();
         };
         if (this.level == 3) {
+            this.player.x = 100;
+            this.levelUp();
+        };
+        if (this.level == 4) {
+            this.player.x = 100;
+            this.levelUp();
+        };
+        if (this.level == 5) {
+            this.player.x = 100;
+            this.levelUp();
+        };
+        if (this.level == 6) {
             this.stop();
             alert("U won the HACKSHOW! ⛏⛏⛏⛏");
         };
@@ -97,17 +116,28 @@ Game.prototype.winOrLose = function () {
 Game.prototype.levels = function () {
     switch (this.level) {
         case 1:
-        this.npc = new Player(this, 100, 150, "images/sprite.png", 0.5);
-        this.background = new Background(this, "images/background.jpg");
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.3);
+            this.background = new Background(this, "images/background.jpg");
             break;
         case 2:
-        this.npc = new Player(this, 100, 150, "images/sprite.png", 1);
-        this.background = new Background(this, "images/background.jpg");
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.5);
+            this.background = new Background(this, "images/background.jpg");
             break;
-
         case 3:
-        this.npc = new Player(this, 100, 150, "images/sprite.png", 1.5);
-        this.background = new Background(this, "images/backgroundfinal.jpg");
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.6);
+            this.background = new Background(this, "images/background.jpg");
+            break;
+        case 4:
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.75);
+            this.background = new Background(this, "images/background.jpg");
+            break;
+        case 5:
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.9);
+            this.background = new Background(this, "images/background.jpg");
+            break;
+        case 6:
+            this.npc = new Player(this, 100, 150, "images/sprite.png", 1.2);
+            this.background = new Background(this, "images/backgroundfinal.jpg");
             break;
     };
 };
@@ -133,8 +163,17 @@ Game.prototype.collision = function () {
     }.bind(this));
 };
 
-Game.prototype.deleteObstacles = function () {
-    this.obstacles = this.obstacles.filter(function (obstacle) {
-        return obstacle.x >= 100;
-    });
-};
+Game.prototype.ia = function () {
+    this.obstacles.forEach(function (obstacle) {
+        if ((this.npc.x + this.npc.w) >= (obstacle.x - obstacle.w)) {
+            this.npc.y -= 5;
+            console.log("salto");
+            if ((this.npc.x + this.npc.w) > (obstacle.x + obstacle.w)) {
+                this.npc.y += 10;
+                if (this.npc.y > this.npc.y0) {
+                    this.npc.y = this.npc.y0;
+                }
+            }
+        }
+    }.bind(this));
+}

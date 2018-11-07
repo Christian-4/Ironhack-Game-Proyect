@@ -4,7 +4,7 @@ function Player(game, x, y, img, vx) {
     this.vx = vx;
     this.y = y;
     this.y0 = y;
-    this.vy = 2;
+    this.vy = null;
     this.img = new Image();
     this.img.src = img;
     this.img.frames = 8;
