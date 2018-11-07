@@ -18,7 +18,7 @@ Game.prototype.init = function () {
         }
         this.ia();
         if (this.collision()) {
-            
+
             this.gameOver();
         }
     }.bind(this), 1000 / this.fps);
@@ -157,13 +157,13 @@ Game.prototype.levelUp = function () {
 
 Game.prototype.collision = function () {
     return this.obstacles.some(function (obstacle) {
-        if(
+        if (
             ((this.player.x + this.player.w) >= obstacle.x &&
                 (obstacle.x + obstacle.w) >= this.player.x &&
                 (this.player.y + this.player.h) > obstacle.y &&
                 (obstacle.y + obstacle.h) > this.player.y)
-        ){
-            if (obstacle.type === 0){
+        ) {
+            if (obstacle.type === 0) {
                 obstacle.x = 0;
             } else {
                 return true;
@@ -186,7 +186,11 @@ Game.prototype.ia = function () {
         function (obstacle) {
             if (this.npc.x + this.npc.w >= obstacle.x - obstacle.w &&
                 this.npc.x + this.npc.w <= obstacle.x + obstacle.w * 2) {
-                this.npc.y -= 5
+                if (obstacle.type === 0) {
+                    obstacle.x = 0;
+                } else {
+                    this.npc.y -= 5;
+                }
             }
         }.bind(this)
     );
