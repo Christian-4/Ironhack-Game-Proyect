@@ -1,4 +1,4 @@
-function Obstacle(game, w, h, y, img) {
+function Obstacle(game, w, h, y, img, type) {
     this.game = game;
     this.w = w;
     this.h = h;
@@ -7,6 +7,7 @@ function Obstacle(game, w, h, y, img) {
     this.img.src = img;
     this.x = this.game.canvas.width;
     this.y = y;
+    this.type = type;
 };
 
 Obstacle.prototype.draw = function () {

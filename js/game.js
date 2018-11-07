@@ -18,6 +18,7 @@ Game.prototype.init = function () {
         }
         this.ia();
         if (this.collision()) {
+            
             this.gameOver();
         }
     }.bind(this), 1000 / this.fps);
@@ -44,17 +45,19 @@ Game.prototype.gameOver = function () {
 
 Game.prototype.generateObstacles = function () {
     var arrayObstacles = ["images/obstacle01.png", "images/obstacle02.png", "images/obstacle03.png", "images/obstacle04.png"];
+    var randomNumber = Math.floor(Math.random() * (arrayObstacles.length))
+
     this.obstacles.push(new Obstacle(this,
         45,
         45,
         this.player.y0 + this.player.h - 45,
-        arrayObstacles[Math.floor(Math.random() * (arrayObstacles.length))]));
+        arrayObstacles[randomNumber], randomNumber));
 
     this.obstacles.push(new Obstacle(this,
         45,
         45,
         this.npc.y0 + this.npc.h - 45,
-        arrayObstacles[Math.floor(Math.random() * (arrayObstacles.length))]));
+        arrayObstacles[randomNumber], randomNumber));
 };
 
 Game.prototype.deleteObstacles = function () {
@@ -154,12 +157,18 @@ Game.prototype.levelUp = function () {
 
 Game.prototype.collision = function () {
     return this.obstacles.some(function (obstacle) {
-        return (
+        if(
             ((this.player.x + this.player.w) >= obstacle.x &&
                 (obstacle.x + obstacle.w) >= this.player.x &&
                 (this.player.y + this.player.h) > obstacle.y &&
                 (obstacle.y + obstacle.h) > this.player.y)
-        );
+        ){
+            if (obstacle.type === 0){
+                obstacle.x = 0;
+            } else {
+                return true;
+            }
+        }
     }.bind(this));
 };
 
@@ -176,7 +185,7 @@ Game.prototype.ia = function () {
     this.obstacles.forEach(
         function (obstacle) {
             if (this.npc.x + this.npc.w >= obstacle.x - obstacle.w &&
-                this.npc.x + this.npc.w <= obstacle.x + obstacle.w*2) {
+                this.npc.x + this.npc.w <= obstacle.x + obstacle.w * 2) {
                 this.npc.y -= 5
             }
         }.bind(this)
