@@ -176,6 +176,8 @@ Game.prototype.collision = function () {
         ) {
             if (obstacle.type === 0) {
                 obstacle.x = 0;
+                var ohyeah = new MySound("sounds/ohyeah.mp3");
+                ohyeah.play();
             } else {
                 return true;
             }
@@ -199,6 +201,8 @@ Game.prototype.ia = function () {
                 this.npc.x + this.npc.w <= obstacle.x + obstacle.w * 2) {
                 if (obstacle.type === 0) {
                     obstacle.x = 0;
+                    var ohyeah = new MySound("sounds/ohyeah.mp3");
+                    ohyeah.play();
                 } else {
                     this.npc.y -= 10;
                 }
