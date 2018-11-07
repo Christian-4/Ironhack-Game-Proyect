@@ -169,7 +169,7 @@ Game.prototype.levelUp = function () {
 Game.prototype.collision = function () {
     return this.obstacles.some(function (obstacle) {
         if (
-            ((this.player.x + this.player.w) >= obstacle.x &&
+            ((this.player.x + this.player.w - 30) >= obstacle.x &&
                 (obstacle.x + obstacle.w) >= this.player.x &&
                 (this.player.y + this.player.h) > obstacle.y &&
                 (obstacle.y + obstacle.h) > this.player.y)
