@@ -17,5 +17,3 @@ WAIT FOR HACKSHOW!!
 Pulse repeatedly and fast the key -> for run fast.
 
 Pulse spacebar for jump and evade code languajes.
-
-!(http://1.bp.blogspot.com/-jlS8MTubWac/T-V39S9ImkI/AAAAAAAAAT8/UXr4fX5ZRg4/s300/Play%2BNow%2BClub%2BPenguin%2BButton%2B4.png)[https://christian-4.github.io/Ironhack-Game-Proyect/]
