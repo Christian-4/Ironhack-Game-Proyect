@@ -25,7 +25,7 @@ Game.prototype.init = function () {
 
 Game.prototype.reset = function () {
     this.levels();
-    this.player = new Player(this, 100, 500, "images/sprite.png");
+    this.player = new Player(this, 100, 500, "images/spriterodrigo.png");
     this.obstacles = [];
     this.obstaclesNpc = [];
     this.framesCounter = 0;
@@ -130,27 +130,27 @@ Game.prototype.winOrLose = function () {
 Game.prototype.levels = function () {
     switch (this.level) {
         case 1:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.6);
+            this.npc = new Player(this, 100, 150, "images/spriteteo.png", 0.6);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 2:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.75);
+            this.npc = new Player(this, 100, 150, "images/spritejuan.png", 0.75);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 3:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.85);
+            this.npc = new Player(this, 100, 150, "images/spritegabi.png", 0.85);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 4:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 0.95);
+            this.npc = new Player(this, 100, 150, "images/spritegiorgio.png", 0.95);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 5:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 1);
+            this.npc = new Player(this, 100, 150, "images/spritediego.png", 1);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 6:
-            this.npc = new Player(this, 100, 150, "images/sprite.png", 1.1);
+            this.npc = new Player(this, 100, 150, "images/spritevicario.png", 1.1);
             this.background = new Background(this, "images/backgroundfinal.jpg");
             break;
     };
