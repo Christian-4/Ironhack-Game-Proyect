@@ -131,23 +131,23 @@ Game.prototype.winOrLose = function () {
 Game.prototype.levels = function () {
     switch (this.level) {
         case 1:
-            this.npc = new Player(this, 100, 150, "images/spriteteo.png", 1);
+            this.npc = new Player(this, 100, 150, "images/spriteteo.png", 1.1);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 2:
-            this.npc = new Player(this, 100, 150, "images/spritejuan.png", 1.25);
+            this.npc = new Player(this, 100, 150, "images/spritejuan.png", 1.2);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 3:
-            this.npc = new Player(this, 100, 150, "images/spritegabi.png", 1.5);
+            this.npc = new Player(this, 100, 150, "images/spritegabi.png", 1.4);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 4:
-            this.npc = new Player(this, 100, 150, "images/spritegiorgio.png", 1.75);
+            this.npc = new Player(this, 100, 150, "images/spritegiorgio.png", 1.55);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 5:
-            this.npc = new Player(this, 100, 150, "images/spritediego.png", 1.8);
+            this.npc = new Player(this, 100, 150, "images/spritediego.png", 1.7);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 6:
