@@ -41,7 +41,7 @@ Player.prototype.move = function () {
         event.preventDefault();
         if (event.keyCode === RIGHT) {
             this.animateImg(1);
-            this.x += 10;
+            this.x += 15;
         };
     }.bind(this);
 

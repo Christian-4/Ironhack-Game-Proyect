@@ -97,6 +97,7 @@ Game.prototype.move = function () {
 
 Game.prototype.winOrLose = function () {
     if (this.player.x >= this.canvas.width) {
+        this.obstacles = [];
         if (this.level == 1) {
             this.player.x = 100;
             this.levelUp();
@@ -130,27 +131,27 @@ Game.prototype.winOrLose = function () {
 Game.prototype.levels = function () {
     switch (this.level) {
         case 1:
-            this.npc = new Player(this, 100, 150, "images/spriteteo.png", 0.6);
+            this.npc = new Player(this, 100, 150, "images/spriteteo.png", 1);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 2:
-            this.npc = new Player(this, 100, 150, "images/spritejuan.png", 0.75);
+            this.npc = new Player(this, 100, 150, "images/spritejuan.png", 1.25);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 3:
-            this.npc = new Player(this, 100, 150, "images/spritegabi.png", 0.85);
+            this.npc = new Player(this, 100, 150, "images/spritegabi.png", 1.5);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 4:
-            this.npc = new Player(this, 100, 150, "images/spritegiorgio.png", 0.95);
+            this.npc = new Player(this, 100, 150, "images/spritegiorgio.png", 1.75);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 5:
-            this.npc = new Player(this, 100, 150, "images/spritediego.png", 1);
+            this.npc = new Player(this, 100, 150, "images/spritediego.png", 1.8);
             this.background = new Background(this, "images/background.jpg");
             break;
         case 6:
-            this.npc = new Player(this, 100, 150, "images/spritevicario.png", 1.1);
+            this.npc = new Player(this, 100, 150, "images/spritevicario.png", 1.9);
             this.background = new Background(this, "images/backgroundfinal.jpg");
             break;
     };
