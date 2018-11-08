@@ -11,3 +11,8 @@ You can get the beers but musnt get code languages as js, node or react. Because
 Better get a cold beer and speak with your mates or see the proyects and.....
 
 WAIT FOR HACKSHOW!!
+
+## CONTROLS
+
+Pulse repeatedly and fast the key -> for run fast.
+Pulse spacebar for jump and evade code languajes.
