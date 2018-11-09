@@ -52,8 +52,10 @@ Game.prototype.ia = function () {
 ````
 ## Futuras mejoras
 
-Refactorizar el código, añadir personajes para el jugador, poner mas obstáculos y diferentes.
+Refactorizar el código, añadir personajes para el jugador, poner diferentes y más obstáculos como que caigan del cielo.
 
 ## Que cambiaría si empezara de nuevo
 
-La forma de escribir el código, ir refactorizandolo mientras lo voy escribiendo ya que no esta refactorizado.
+La forma de escribir el código, ir refactorizandolo mientras lo voy escribiendo.
+
+Incluso haría un juego nuevo y mas complejo gracias a lo que he aprendido.
