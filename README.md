@@ -21,3 +21,39 @@ Pulse spacebar for jump and evade code languajes.
 ## You can play here!
 
 https://christian-4.github.io/Ironhack-Game-Proyect/
+
+## Lo que mas me ha costado y mas orgulloso estoy
+````
+Game.prototype.ia = function () {
+    var gravity = 0.4;
+
+    if (this.npc.y >= this.npc.y0) {
+        this.npc.vy = 1;
+        this.npc.y = this.npc.y0;
+    } else {
+        this.npc.vy += gravity;
+        this.npc.y += this.npc.vy;
+    };
+    this.obstaclesNpc.forEach(
+        function (obstacle) {
+            if (this.npc.x + this.npc.w >= obstacle.x - obstacle.w &&
+                this.npc.x + this.npc.w <= obstacle.x + obstacle.w * 2) {
+                if (obstacle.type === 0) {
+                    obstacle.x = 0;
+                    var ohyeah = new MySound("sounds/ohyeah.mp3");
+                    ohyeah.play();
+                } else {
+                    this.npc.y -= 10;
+                }
+            }
+        }.bind(this)
+    );
+};
+````
+## Futuras mejoras
+
+Refactorizar el código, añadir personajes para el jugador, poner mas obstáculos y diferentes.
+
+## Que cambiaría si empezara de nuevo
+
+La forma de escribir el código, ir refactorizandolo mientras lo voy escribiendo ya que no esta refactorizado.
